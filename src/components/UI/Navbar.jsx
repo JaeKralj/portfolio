@@ -11,7 +11,7 @@ export default function Navbar() {
   // get width
   const { width } = useWindowsDimensions()
   return (
-    <nav className='flex justify-between flex-wrap'>
+    <nav className='flex justify-between flex-wrap p-3'>
       {/* logo */}
       <a href='#'>
         <span className='font-bold lg:text-4xl text-base text-black-200 dark:text-white'>
@@ -30,24 +30,24 @@ export default function Navbar() {
       {/* nav items */}
       <div
         className={`${
-          navCollapsed ? 'hidden' : 'block basis-full grow'
+          navCollapsed ? 'hidden' : 'block basis-full grow shadow  pb-3'
         } md:block`}
       >
         <ul
           className={`flex flex-col gap-3 md:flex-row lg:gap-7 w-full mt-7 md:mt-0`}
         >
           <Link to='/'>
-            <li className='p-2 lg:text-[1.125rem] text-base font-semibold lg:font-normal hover:border-b hover:border-b-green text-black-200 dark:text-white'>
+            <li className='lg:p-2 lg:text-[1.125rem] text-base font-semibold lg:font-normal hover:border-b hover:border-b-green text-black-200 dark:text-white'>
               Home
             </li>
           </Link>
           <Link to='/'>
-            <li className='p-2 lg:text-[1.125rem] text-base font-semibold lg:font-normal hover:border-b hover:border-b-green text-black-200 dark:text-white'>
+            <li className='lg:p-2 lg:text-[1.125rem] text-base font-semibold lg:font-normal hover:border-b hover:border-b-green text-black-200 dark:text-white'>
               Contact
             </li>
           </Link>
           <Link to='/'>
-            <li className='p-2 lg:text-[1.125rem] text-base font-semibold lg:font-normal hover:border-b hover:border-b-green text-black-200 dark:text-white'>
+            <li className='lg:p-2 lg:text-[1.125rem] text-base font-semibold lg:font-normal hover:border-b hover:border-b-green text-black-200 dark:text-white'>
               Project
             </li>
           </Link>

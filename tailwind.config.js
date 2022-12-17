@@ -16,6 +16,7 @@ module.exports = {
     },
     fontFamily: {
       mulish: ['Mulish', 'sans-serif'],
+      cormorant: ['Cormorant', 'serif'],
     },
     extend: {},
     darkMode: 'class',
