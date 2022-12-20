@@ -1,7 +1,7 @@
-import profilePic from '../../assets/akinduro_gideon_frontend_developer-nobg.png'
-import Button from '../UI/Button'
+import profilePic from '../../../assets/akinduro_gideon_frontend_developer-nobg.png'
+import Button from '../../UI/Button'
 
-export default function Header() {
+export default function Header({ btnText }) {
   return (
     <header className='mt-7 pt-5 flex flex-col lg:flex-row items-center'>
       <div className='basis-1/2'>
@@ -22,7 +22,7 @@ export default function Header() {
           ensure interactivity and accessibilty for users and quality feedback
           from the team.
         </p>
-        <Button>View My Projects</Button>
+        <Button>{btnText}</Button>
       </div>
     </header>
   )

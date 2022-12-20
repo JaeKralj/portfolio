@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+/* variable declaration */
+
 *,
 *::after,
 *::before {
@@ -12,4 +14,83 @@
 
 body {
   font-family: 'Mulish', sans-serif;
+}
+
+/* special engine renderer styles for upload btn */
+input[type='file']::-webkit-file-upload-button {
+  margin-left: 0;
+  cursor: pointer;
+  background-color: var(--primary-bgcolor);
+  color: #fff;
+  border: none;
+  padding: 0.625rem;
+  border-radius: 0.625rem;
+  margin-left: 0.625rem;
+}
+
+input[type='file']::-webkit-file-upload-button:hover {
+  margin-left: 0;
+  cursor: pointer;
+  background-color: transparent !important;
+  border: 1px solid var(--primary-bgcolor) !important;
+  color: var(--primary-bgcolor) !important;
+}
+
+input[type='file']::-ms-browse {
+  margin-left: 0;
+  cursor: pointer;
+  background-color: var(--primary-bgcolor);
+  color: #fff;
+  border: none;
+  padding: 0.625rem;
+  border-radius: 0.625rem;
+  margin-left: 0.625rem;
+}
+
+input[type='file']::-ms-browse:hover {
+  margin-left: 0;
+  cursor: pointer;
+  background-color: transparent !important;
+  border: 1px solid var(--primary-bgcolor) !important;
+  color: var(--primary-bgcolor) !important;
+}
+
+input[type='file']::file-selector-button {
+  margin-left: 0;
+  cursor: pointer;
+  background-color: var(--primary-bgcolor);
+  color: #fff;
+  border: none;
+  padding: 0.625rem;
+  border-radius: 0.625rem;
+  margin-left: 0.625rem;
+}
+
+input[type='file']::file-selector-button:hover {
+  margin-left: 0;
+  cursor: pointer;
+  background-color: transparent !important;
+  border: 1px solid var(--primary-bgcolor) !important;
+  color: var(--primary-bgcolor) !important;
+}
+
+/* set color of input file to black */
+input[type='file'] {
+  margin-left: 0;
+  cursor: pointer;
+  color: black;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --primary-bgcolor: #4da100;
+    --primary-textcolor: #fff;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary-bgcolor: #4da100;
+    --primary-textcolor: #000;
+  }
 }

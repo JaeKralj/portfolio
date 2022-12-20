@@ -13,6 +13,9 @@ module.exports = {
         200: '#222222',
       },
       green: '#4DA100',
+      twitterBlue: '#1DA1F2',
+      linkedInBlue: '#0A63BC',
+      whatsapGreen: '#09D24B',
     },
     fontFamily: {
       mulish: ['Mulish', 'sans-serif'],

@@ -1,6 +1,10 @@
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 
 import Navbar from './components/UI/Navbar'
+import Admin from './pages/Admin/Admin'
+import SignIn from './pages/Admin/SignIn'
+import SignUp from './pages/Admin/SignUp'
+import Contact from './pages/Contact'
 import Home from './pages/Home'
 
 function App() {
@@ -10,6 +14,10 @@ function App() {
         <Navbar />
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='contact' element={<Contact />} />
+          <Route path='admin' element={<Admin />} />
+          <Route path='admin/signup' element={<SignUp />} />
+          <Route path='admin/signin' element={<SignIn />} />
         </Routes>
       </Router>
     </div>
