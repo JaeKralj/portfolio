@@ -1,8 +1,14 @@
-import React, { createContext, useState } from 'react'
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
+import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
+import { createContext, useContext, useState } from 'react'
+
+import { db, storage } from '../firebase.config'
+import { userCtx } from './user-ctx'
 
 export const formCtx = createContext({})
 
 export default function FormCtxProvider({ children }) {
+  const { currentUser } = useContext(userCtx)
   const [vals, setVals] = useState({
     pic: null,
     title: '',
@@ -24,7 +30,6 @@ export default function FormCtxProvider({ children }) {
   const handleFileUpload = name => e => {
     // update file state
     setVals(prev => ({ ...prev, [name]: e.target.files[0] }))
-    console.log(e.target.files[0])
   }
 
   // handle Features list
@@ -35,10 +40,28 @@ export default function FormCtxProvider({ children }) {
   }
 
   // handle form Submission
-  const handleSubmit = (vals, e) => {
+  const handleSubmit = async e => {
     e.preventDefault()
-    // console.log(vals)
-    const formData = new FormData()
+
+    // // store image in firebase
+    let imgUrl
+    try {
+      const projectImgsRef = ref(storage, `projectImgs/${vals.pic.name}`)
+      const uploadImg = await uploadBytesResumable(projectImgsRef, vals.pic)
+      const downloadUrl = await getDownloadURL(
+        ref(storage, uploadImg.metadata.fullPath)
+      )
+      imgUrl = downloadUrl
+    } catch (error) {
+      alert(error)
+    }
+
+    // add formData to firestore.
+    const docRef = await addDoc(collection(db, 'projects'), {
+      ...vals,
+      pic: imgUrl,
+      timeStamp: serverTimestamp(),
+    })
   }
 
   return (
