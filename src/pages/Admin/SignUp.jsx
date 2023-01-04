@@ -1,9 +1,8 @@
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth'
 import { doc, serverTimestamp, setDoc } from 'firebase/firestore'
 import { useContext, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
-import Button from '../../components/UI/Button'
 import FormLoader from '../../components/UI/FormLoader'
 import { userCtx } from '../../contexts/user-ctx'
 import { app, db } from '../../firebase.config'
@@ -30,8 +29,7 @@ export default function SignUp() {
       const user = userCredential.user
       // update user profile
       setCurrentUser(auth.currentUser || user)
-      localStorage.setItem('user', JSON.stringify(auth.currentUser || user))
-      // update form submission loading state
+
       setLoading(auth.currentUser && true)
       // add user to db
       try {
@@ -53,19 +51,12 @@ export default function SignUp() {
       {loading ? (
         <FormLoader />
       ) : (
-        <AuthForm handleSubmit={handleSignUp}>
-          <div className='flex justify-end gap-3'>
-            <Button type={'submit'} disabled={loading}>
-              Sign Up
-            </Button>
-            <Link
-              to={'/admin/signin'}
-              className='p-2 text-center hover:bg-white-100 flex items-center transition-colors duration-100'
-            >
-              <span>Sign In</span>
-            </Link>
-          </div>
-        </AuthForm>
+        <AuthForm
+          handleSubmit={handleSignUp}
+          redirectPathName='/admin/signin'
+          redirectText={'Sign In'}
+          btnText='Sign Up'
+        />
       )}
     </>
   )

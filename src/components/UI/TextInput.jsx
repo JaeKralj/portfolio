@@ -1,8 +1,7 @@
 import { useField } from 'formik'
 
-export default function TextInput({ id, type, label, value, handleChange }) {
+export default function TextInput({ id, type, label }) {
   const [field, meta] = useField(id)
-
   return (
     <div>
       <label
@@ -17,7 +16,7 @@ export default function TextInput({ id, type, label, value, handleChange }) {
           className='shadow-lg border-green border-2 p-2 rounded-lg mt-1 p-2'
           {...field}
         />
-        {meta.error && meta.error && <small>{meta.error}</small>}
+        {meta.error && meta.touched && <small>{meta.error}</small>}
       </label>
     </div>
   )

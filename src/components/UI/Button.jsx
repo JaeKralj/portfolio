@@ -8,7 +8,9 @@ export default function Button({
   return (
     <button
       onClick={handleOnclick}
-      className={`px-4 py-3 text-center text-base text-lg text-white bg-green transition-all duration-200 ease-in-out hover:translate-y-1 ${className}`}
+      className={`px-4 py-3 text-center text-base text-lg text-white bg-green transition-all duration-200 ease-in-out hover:translate-y-1 ${className} ${
+        disabled ? 'bg-opacity-[0.55]' : ''
+      }`}
       type={type || 'button'}
       disabled={disabled}
     >
