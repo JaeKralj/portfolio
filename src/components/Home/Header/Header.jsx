@@ -3,7 +3,7 @@ import Button from '../../UI/Button'
 
 export default function Header({ btnText }) {
   return (
-    <header className='mt-7 pt-5 flex flex-col lg:flex-row items-center'>
+    <header className='mt-7 pt-5 flex flex-col lg:flex-row justify-center items-center'>
       <div className='basis-1/2'>
         <img
           src={profilePic}

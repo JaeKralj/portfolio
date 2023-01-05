@@ -11,57 +11,61 @@ export default function Navbar() {
   // get width
   const { width } = useWindowsDimensions()
   return (
-    <nav className='flex justify-between flex-wrap p-3'>
-      {/* logo */}
-      <Link to={'/'}>
-        <span className='font-bold lg:text-4xl text-base text-black-200 dark:text-white'>
-          JaeKralj
-        </span>
-        {width > 768 && <Line className='stroke-black-200 dark:stroke-white' />}
-      </Link>
-      {/* toggler */}
-      {width < 640 && (
-        <MenuIcon
-          onClick={() => {
-            setNavCollapsed(prev => !prev)
-          }}
-        />
-      )}
-      {/* nav items */}
-      <div
-        className={`${
-          navCollapsed ? 'hidden' : 'block basis-full grow shadow  pb-3'
-        } md:block`}
-      >
-        <ul
-          className={`flex flex-col gap-3 md:flex-row lg:gap-7 w-full mt-7 md:mt-0`}
+    <div className=' p-5 lg:px-20 lg:pt-7'>
+      <nav className='flex justify-between flex-wrap p-3'>
+        {/* logo */}
+        <Link to={'/'}>
+          <span className='font-bold lg:text-4xl text-base text-black-200 dark:text-white'>
+            JaeKralj
+          </span>
+          {width > 768 && (
+            <Line className='stroke-black-200 dark:stroke-white' />
+          )}
+        </Link>
+        {/* toggler */}
+        {width < 640 && (
+          <MenuIcon
+            onClick={() => {
+              setNavCollapsed(prev => !prev)
+            }}
+          />
+        )}
+        {/* nav items */}
+        <div
+          className={`${
+            navCollapsed ? 'hidden' : 'block basis-full grow shadow  pb-3'
+          } md:block`}
         >
-          <Link to='/'>
-            <li className='lg:p-2 lg:text-[1.125rem] text-base font-semibold lg:font-normal hover:border-b hover:border-b-green text-black-200 dark:text-white'>
-              Home
-            </li>
-          </Link>
-          <Link to='/contact'>
-            <li className='lg:p-2 lg:text-[1.125rem] text-base font-semibold lg:font-normal hover:border-b hover:border-b-green text-black-200 dark:text-white'>
-              Contact
-            </li>
-          </Link>
-          <Link to='/'>
-            <li className='lg:p-2 lg:text-[1.125rem] text-base font-semibold lg:font-normal hover:border-b hover:border-b-green text-black-200 dark:text-white'>
-              Project
-            </li>
-          </Link>
-          <a
-            href='https://jaekralj.github.io/resume'
-            target='_blank'
-            rel='noreferrer'
+          <ul
+            className={`flex flex-col gap-3 md:flex-row lg:gap-7 w-full mt-7 md:mt-0`}
           >
-            <li className='p-2 lg:text-[1.125rem] text-base font-semibold lg:font-normal text-white dark:text-black-200 bg-green w-20 mr-auto'>
-              Resume
-            </li>
-          </a>
-        </ul>
-      </div>
-    </nav>
+            <Link to='/'>
+              <li className='lg:p-2 lg:text-[1.125rem] text-base font-semibold lg:font-normal hover:border-b hover:border-b-green text-black-200 dark:text-white'>
+                Home
+              </li>
+            </Link>
+            <Link to='/contact'>
+              <li className='lg:p-2 lg:text-[1.125rem] text-base font-semibold lg:font-normal hover:border-b hover:border-b-green text-black-200 dark:text-white'>
+                Contact
+              </li>
+            </Link>
+            <Link to='/'>
+              <li className='lg:p-2 lg:text-[1.125rem] text-base font-semibold lg:font-normal hover:border-b hover:border-b-green text-black-200 dark:text-white'>
+                Project
+              </li>
+            </Link>
+            <a
+              href='https://jaekralj.github.io/resume'
+              target='_blank'
+              rel='noreferrer'
+            >
+              <li className='p-2 lg:text-[1.125rem] text-base font-semibold lg:font-normal text-white dark:text-black-200 bg-green w-20 mr-auto'>
+                Resume
+              </li>
+            </a>
+          </ul>
+        </div>
+      </nav>
+    </div>
   )
 }
