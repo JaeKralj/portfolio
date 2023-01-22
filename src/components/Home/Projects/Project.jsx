@@ -4,7 +4,7 @@ import Button from '../../UI/Button'
 
 export default function Project({ imgUrl, description, title, id }) {
   return (
-    <div className='flex odd:flex-row-reverse justify-evenly items-center py-5 flex-wrap'>
+    <div className='flex odd:flex-row-reverse justify-evenly items-center py-5 flex-wrap text-black dark:text-white'>
       <div className='lg:basis-2/5'>
         <img src={imgUrl} alt={title} className='w-full' loading='lazy' />
       </div>

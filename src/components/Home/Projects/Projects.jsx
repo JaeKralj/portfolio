@@ -9,6 +9,7 @@ import Skeleton from './Skeleton'
 export default function Projects() {
   const { projects, setProjects } = useContext(globalCtx)
   const [loading, setLoading] = useState(false)
+
   useEffect(() => {
     setLoading(true)
     async function fecthProjects() {
@@ -30,8 +31,7 @@ export default function Projects() {
     }
     fecthProjects()
   }, [])
-  // const uniqueProjects = [new Map(projects.map(i => [i.id, ...i]))]
-  // console.log(uniqueProjects)
+
   return (
     <section className=' my-7 lg:my-9'>
       <h2 className='text-center font-cormorant font-bold lg:text-[4rem] text-[2rem] text-black dark:text-white'>
@@ -39,13 +39,13 @@ export default function Projects() {
       </h2>
       {loading
         ? [0, 1, 2, 3].map(() => <Skeleton />)
-        : projects.map(({ title, desc, id, pic }) => (
+        : projects.map(project => (
             <Project
-              key={Math.random()}
-              title={title}
-              description={desc}
-              imgUrl={pic}
-              id={id}
+              key={project?.id}
+              title={project?.title}
+              description={project?.desc}
+              imgUrl={project?.pic}
+              id={project?.id}
             />
           ))}
     </section>

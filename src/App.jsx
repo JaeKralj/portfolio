@@ -12,7 +12,7 @@ import Project from './pages/Project'
 
 function App() {
   return (
-    <div className='min-h-screen bg-white-100 dark:bg-black-200 relative'>
+    <div className='min-h-screen flex flex-col bg-white-100 dark:bg-black-200 relative'>
       <Router>
         <Navbar />
         <Routes>
