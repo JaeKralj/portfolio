@@ -3,37 +3,40 @@ import { useContext, useEffect, useState } from 'react'
 
 import { globalCtx } from '../../../contexts/global-ctx'
 import { db } from '../../../firebase.config'
+import Button from '../../UI/Button'
 import Project from './Project'
 import Skeleton from './Skeleton'
 
 export default function Projects() {
   const { projects, setProjects } = useContext(globalCtx)
   const [loading, setLoading] = useState(false)
+  const [err, setErr] = useState(null)
 
-  useEffect(() => {
+  // fetcher
+  async function fecthProjects() {
+    if (projects.length > 0) return
     setLoading(true)
-    async function fecthProjects() {
-      try {
-        const querySnapshots = await getDocs(collection(db, 'projects'))
-        setLoading(false)
-        if (querySnapshots.size <= 0) {
-          throw new Error('There was a problem fetching projects')
-        }
-        querySnapshots.forEach(doc => {
-          setProjects(prev => [...prev, { ...doc.data(), id: doc.id }])
-        })
-      } catch (error) {
-        alert(error)
-        console.log(error)
-        setLoading(false)
-        console.log(loading)
+    try {
+      const querySnapshots = await getDocs(collection(db, 'projects'))
+      setLoading(false)
+      if (querySnapshots.size <= 0) {
+        throw new Error('There was a problem fetching projects')
       }
+      querySnapshots.forEach(doc => {
+        setProjects(prev => [...prev, { ...doc.data(), id: doc.id }])
+      })
+    } catch (error) {
+      setErr(error.message)
+      setLoading(false)
+      console.log(loading)
     }
+  }
+  useEffect(() => {
     fecthProjects()
   }, [])
 
   return (
-    <section className=' my-7 lg:my-9'>
+    <section className=' my-7 lg:my-9' id='projects'>
       <h2 className='text-center font-cormorant font-bold lg:text-[4rem] text-[2rem] text-black dark:text-white'>
         Projects Overview
       </h2>
@@ -48,6 +51,12 @@ export default function Projects() {
               id={project?.id}
             />
           ))}
+      {err && !loading && projects.length <= 0 && (
+        <div className='flex flex-col justify-center items-center'>
+          <p>{err}</p>
+          <Button handleOnclick={fecthProjects}>Try again</Button>
+        </div>
+      )}
     </section>
   )
 }

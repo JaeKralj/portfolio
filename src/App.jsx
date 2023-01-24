@@ -9,6 +9,7 @@ import SignUp from './pages/Admin/SignUp'
 import Contact from './pages/Contact'
 import Home from './pages/Home'
 import Project from './pages/Project'
+import Projects from './pages/Projects'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='projects' element={<Projects />} />
           <Route path='contact' element={<Contact />} />
           <Route
             path='/admin'

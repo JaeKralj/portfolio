@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 import { ReactComponent as Line } from '../../assets/line.svg'
 import { ReactComponent as MenuIcon } from '../../assets/menu.svg'
@@ -11,6 +11,11 @@ export default function Navbar() {
   const [navCollapsed, setNavCollapsed] = useState(true)
   // get width
   const { width } = useWindowsDimensions()
+
+  // activestyle
+  let activeStyle = {
+    border: '2px solid #4DA100',
+  }
   return (
     <header>
       <Frag>
@@ -41,21 +46,30 @@ export default function Navbar() {
             <ul
               className={`flex flex-col gap-3 md:flex-row lg:gap-7 w-full mt-7 md:mt-0`}
             >
-              <Link to='/'>
+              <NavLink
+                to='/'
+                style={({ isActive }) => (isActive ? activeStyle : undefined)}
+              >
                 <li className='lg:p-2 lg:text-[1.125rem] text-base font-semibold lg:font-normal hover:border-b hover:border-b-green text-black-200 dark:text-white'>
                   Home
                 </li>
-              </Link>
-              <Link to='/contact'>
+              </NavLink>
+              <NavLink
+                to='/contact'
+                style={({ isActive }) => (isActive ? activeStyle : undefined)}
+              >
                 <li className='lg:p-2 lg:text-[1.125rem] text-base font-semibold lg:font-normal hover:border-b hover:border-b-green text-black-200 dark:text-white'>
                   Contact
                 </li>
-              </Link>
-              <Link to='/'>
+              </NavLink>
+              <NavLink
+                to='projects'
+                style={({ isActive }) => (isActive ? activeStyle : undefined)}
+              >
                 <li className='lg:p-2 lg:text-[1.125rem] text-base font-semibold lg:font-normal hover:border-b hover:border-b-green text-black-200 dark:text-white'>
                   Project
                 </li>
-              </Link>
+              </NavLink>
               <a
                 href='https://jaekralj.github.io/resume'
                 target='_blank'
