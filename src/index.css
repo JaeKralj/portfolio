@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 /* variable declaration */
+:root {
+  scroll-behavior: smooth;
+}
 
 *,
 *::after,

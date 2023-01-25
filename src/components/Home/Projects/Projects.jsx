@@ -1,62 +1,69 @@
-import { collection, getDocs } from 'firebase/firestore'
-import { useContext, useEffect, useState } from 'react'
-
-import { globalCtx } from '../../../contexts/global-ctx'
-import { db } from '../../../firebase.config'
+import useProjects from '../../../hooks/useProjects'
+import AnimatedWrap from '../../UI/AnimatedWrap'
 import Button from '../../UI/Button'
 import Project from './Project'
 import Skeleton from './Skeleton'
 
 export default function Projects() {
-  const { projects, setProjects } = useContext(globalCtx)
-  const [loading, setLoading] = useState(false)
-  const [err, setErr] = useState(null)
-
-  // fetcher
-  async function fecthProjects() {
-    if (projects.length > 0) return
-    setLoading(true)
-    try {
-      const querySnapshots = await getDocs(collection(db, 'projects'))
-      setLoading(false)
-      if (querySnapshots.size <= 0) {
-        throw new Error('There was a problem fetching projects')
-      }
-      querySnapshots.forEach(doc => {
-        setProjects(prev => [...prev, { ...doc.data(), id: doc.id }])
-      })
-    } catch (error) {
-      setErr(error.message)
-      setLoading(false)
-      console.log(loading)
-    }
-  }
-  useEffect(() => {
-    fecthProjects()
-  }, [])
+  // get projects
+  const { err, loading, projects, fecthProjects } = useProjects()
 
   return (
-    <section className=' my-7 lg:my-9' id='projects'>
-      <h2 className='text-center font-cormorant font-bold lg:text-[4rem] text-[2rem] text-black dark:text-white'>
-        Projects Overview
-      </h2>
-      {loading
-        ? [0, 1, 2, 3].map(() => <Skeleton />)
-        : projects.map(project => (
-            <Project
-              key={project?.id}
-              title={project?.title}
-              description={project?.desc}
-              imgUrl={project?.pic}
-              id={project?.id}
-            />
-          ))}
-      {err && !loading && projects.length <= 0 && (
-        <div className='flex flex-col justify-center items-center'>
-          <p>{err}</p>
-          <Button handleOnclick={fecthProjects}>Try again</Button>
-        </div>
-      )}
+    <section className=' my-7 p-5 lg:my-9' id='projects'>
+      <AnimatedWrap
+        scrollVariant={{
+          hidden: { opacity: 0, y: 100 },
+          visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+              duration: 0.75,
+              ease: 'linear',
+              type: 'spring',
+              bounce: 0.3,
+              stiffness: '70',
+            },
+          },
+        }}
+      >
+        <h2 className='text-center font-cormorant text-[2rem] font-bold text-black dark:text-white lg:text-[4rem]'>
+          Projects Overview
+        </h2>
+        {loading
+          ? [0, 1, 2, 3].map(i => <Skeleton key={i} />)
+          : projects.map(project => (
+              <AnimatedWrap
+                scrollVariant={{
+                  hidden: { opacity: 0, y: 50 },
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                    transition: {
+                      duration: 0.5,
+                      ease: 'linear',
+                      type: 'spring',
+                      bounce: 0.3,
+                      stiffness: '70',
+                    },
+                  },
+                }}
+              >
+                <Project
+                  key={project?.id}
+                  title={project?.title}
+                  description={project?.desc}
+                  imgUrl={project?.pic}
+                  id={project?.id}
+                />
+              </AnimatedWrap>
+            ))}
+        {err && !loading && projects.length <= 0 && (
+          <div className='flex flex-col items-center justify-center'>
+            <p className='text-black-200 dark:text-white'>{err}</p>
+            <Button handleOnclick={fecthProjects}>Try again</Button>
+          </div>
+        )}
+      </AnimatedWrap>
     </section>
   )
 }

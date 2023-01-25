@@ -21,7 +21,11 @@ module.exports = {
       mulish: ['Mulish', 'sans-serif'],
       cormorant: ['Cormorant', 'serif'],
     },
-    extend: {},
+    extend: {
+      animation: {
+        'bounce-slow': 'bounce 2s ease infinite',
+      },
+    },
     darkMode: 'class',
     plugins: [],
   },

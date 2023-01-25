@@ -19,10 +19,10 @@ export default function Navbar() {
   return (
     <header>
       <Frag>
-        <nav className='flex justify-between flex-wrap p-3'>
+        <nav className='flex flex-wrap justify-between p-3'>
           {/* logo */}
-          <Link to={'/'}>
-            <span className='font-bold lg:text-4xl text-base text-black-200 dark:text-white'>
+          <Link to={'/'} className='hover:animate-bounce-slow'>
+            <span className='text-base font-bold text-black-200 dark:text-white lg:text-4xl'>
               JaeKralj
             </span>
             {width > 768 && (
@@ -40,33 +40,36 @@ export default function Navbar() {
           {/* nav items */}
           <div
             className={`${
-              navCollapsed ? 'hidden' : 'block basis-full grow shadow  pb-3'
+              navCollapsed ? 'hidden' : 'block grow basis-full pb-3  shadow'
             } md:block`}
           >
             <ul
-              className={`flex flex-col gap-3 md:flex-row lg:gap-7 w-full mt-7 md:mt-0`}
+              className={`mt-7 flex w-full flex-col gap-3 md:mt-0 md:flex-row lg:gap-7`}
             >
               <NavLink
                 to='/'
                 style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                className='hover:animate-bounce-slow'
               >
-                <li className='lg:p-2 lg:text-[1.125rem] text-base font-semibold lg:font-normal hover:border-b hover:border-b-green text-black-200 dark:text-white'>
+                <li className='text-base font-semibold text-black-200  dark:text-white lg:p-2 lg:text-[1.125rem] lg:font-normal'>
                   Home
                 </li>
               </NavLink>
               <NavLink
                 to='/contact'
                 style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                className='hover:animate-bounce-slow'
               >
-                <li className='lg:p-2 lg:text-[1.125rem] text-base font-semibold lg:font-normal hover:border-b hover:border-b-green text-black-200 dark:text-white'>
+                <li className='text-base font-semibold text-black-200   dark:text-white lg:p-2 lg:text-[1.125rem] lg:font-normal'>
                   Contact
                 </li>
               </NavLink>
               <NavLink
                 to='projects'
                 style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                className='hover:animate-bounce-slow'
               >
-                <li className='lg:p-2 lg:text-[1.125rem] text-base font-semibold lg:font-normal hover:border-b hover:border-b-green text-black-200 dark:text-white'>
+                <li className='text-base font-semibold text-black-200   dark:text-white lg:p-2 lg:text-[1.125rem] lg:font-normal'>
                   Project
                 </li>
               </NavLink>
@@ -74,8 +77,9 @@ export default function Navbar() {
                 href='https://jaekralj.github.io/resume'
                 target='_blank'
                 rel='noreferrer'
+                className='hover:animate-bounce-slow'
               >
-                <li className='p-2 lg:text-[1.125rem] text-base font-semibold lg:font-normal text-white dark:text-black-200 bg-green w-20 mr-auto'>
+                <li className='mr-auto w-20 bg-green p-2 text-base font-semibold text-white dark:text-black-200 lg:text-[1.125rem] lg:font-normal'>
                   Resume
                 </li>
               </a>
