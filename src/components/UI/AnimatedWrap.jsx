@@ -4,7 +4,7 @@ import { useInView } from 'react-intersection-observer'
 
 import { useEffect } from 'react'
 
-export default function AnimatedWrap({ scrollVariant, children }) {
+export default function AnimatedWrap({ scrollVariant, children, className }) {
   // control
   const control = useAnimation()
   const [ref, inView] = useInView()
@@ -22,6 +22,7 @@ export default function AnimatedWrap({ scrollVariant, children }) {
       variants={scrollVariant}
       initial='hidden'
       aria-hidden='true'
+      className={className}
     >
       {children}
     </motion.div>

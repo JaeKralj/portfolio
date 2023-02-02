@@ -1,10 +1,27 @@
 import { Link } from 'react-router-dom'
+import AnimatedWrap from '../../UI/AnimatedWrap'
 
 import Button from '../../UI/Button'
 
 export default function Project({ imgUrl, description, title, id }) {
   return (
-    <div className='flex odd:flex-row-reverse justify-evenly items-center py-5 flex-wrap text-black dark:text-white'>
+    <AnimatedWrap
+      scrollVariant={{
+        hidden: { opacity: 0, y: 50 },
+        visible: {
+          opacity: 1,
+          y: 0,
+          transition: {
+            duration: 0.5,
+            ease: 'linear',
+            type: 'spring',
+            bounce: 0.3,
+            stiffness: '70',
+          },
+        },
+      }}
+      className='flex odd:flex-row-reverse justify-between items-center py-5 flex-wrap text-black dark:text-white my-5'
+    >
       <div className='lg:basis-2/5'>
         <img src={imgUrl} alt={title} className='w-full' loading='lazy' />
       </div>
@@ -22,6 +39,6 @@ export default function Project({ imgUrl, description, title, id }) {
           </Button>
         </Link>
       </div>
-    </div>
+    </AnimatedWrap>
   )
 }

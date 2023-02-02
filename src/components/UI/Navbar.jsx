@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 
-import { ReactComponent as Line } from '../../assets/line.svg'
-import { ReactComponent as MenuIcon } from '../../assets/menu.svg'
+import { ReactComponent as Line } from 'assets/line.svg'
+import { ReactComponent as MenuIcon } from 'assets/menu.svg'
 import useWindowsDimensions from '../../hooks/useWindowDimensions'
 import Frag from './Frag'
 
@@ -19,23 +19,25 @@ export default function Navbar() {
   return (
     <header>
       <Frag>
-        <nav className='flex flex-wrap justify-between p-3'>
+        <nav className='flex flex-wrap justify-between'>
           {/* logo */}
           <Link to={'/'} className='hover:animate-bounce-slow'>
             <span className='text-base font-bold text-black-200 dark:text-white lg:text-4xl'>
               JaeKralj
             </span>
-            {width > 768 && (
+            {width >= 1000 && (
               <Line className='stroke-black-200 dark:stroke-white' />
             )}
           </Link>
           {/* toggler */}
-          {width < 640 && (
-            <MenuIcon
-              onClick={() => {
-                setNavCollapsed(prev => !prev)
-              }}
-            />
+          {width < 768 && (
+            <span className='border-[10px] border-[transparent] cursor-pointer'>
+              <MenuIcon
+                onClick={() => {
+                  setNavCollapsed(prev => !prev)
+                }}
+              />
+            </span>
           )}
           {/* nav items */}
           <div

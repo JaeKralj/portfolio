@@ -63,7 +63,7 @@ export default function Footer() {
                 href='https://twitter.com/VictoryUXer?s=20&t=GNQE79Xq_l47tze7cQFiKA'
                 className='text-green'
               >
-                Victory Chuckwuma
+                Victory Chukwuma
               </a>{' '}
               Built with Reactjs by
               <a
