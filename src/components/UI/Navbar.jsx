@@ -14,7 +14,7 @@ export default function Navbar() {
 
   // activestyle
   let activeStyle = {
-    border: '2px solid #4DA100',
+    color: '#4DA100',
   }
   return (
     <header>
@@ -51,27 +51,27 @@ export default function Navbar() {
               <NavLink
                 to='/'
                 style={({ isActive }) => (isActive ? activeStyle : undefined)}
-                className='hover:animate-bounce-slow'
+                className='hover:animate-bounce-slow text-black-200  dark:text-white'
               >
-                <li className='text-base font-semibold text-black-200  dark:text-white lg:p-2 lg:text-[1.125rem] lg:font-normal'>
+                <li className='text-base font-semibold lg:p-2 lg:text-[1.125rem] lg:font-normal'>
                   Home
                 </li>
               </NavLink>
               <NavLink
                 to='/contact'
                 style={({ isActive }) => (isActive ? activeStyle : undefined)}
-                className='hover:animate-bounce-slow'
+                className='hover:animate-bounce-slow text-black-200  dark:text-white'
               >
-                <li className='text-base font-semibold text-black-200   dark:text-white lg:p-2 lg:text-[1.125rem] lg:font-normal'>
+                <li className='text-base font-semibold lg:p-2 lg:text-[1.125rem] lg:font-normal'>
                   Contact
                 </li>
               </NavLink>
               <NavLink
                 to='projects'
                 style={({ isActive }) => (isActive ? activeStyle : undefined)}
-                className='hover:animate-bounce-slow'
+                className='hover:animate-bounce-slow text-black-200  dark:text-white'
               >
-                <li className='text-base font-semibold text-black-200   dark:text-white lg:p-2 lg:text-[1.125rem] lg:font-normal'>
+                <li className='text-base font-semibold lg:p-2 lg:text-[1.125rem] lg:font-normal'>
                   Project
                 </li>
               </NavLink>

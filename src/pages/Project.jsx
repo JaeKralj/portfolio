@@ -24,7 +24,7 @@ export default function Project() {
   } = matchedProject
   console.log(matchedProject)
   return (
-    <section id={`project${id}`}>
+    <section id={`project${id}`} className='flex-1'>
       <Frag className='text-black-200 dark:text-white-100'>
         <img src={pic} className='w-full' />
         <div className='my-5'>

@@ -3,10 +3,8 @@ import FormCtxProvider from '../../contexts/form-ctx'
 
 export default function Admin() {
   return (
-    <div>
-      <FormCtxProvider>
-        <Form />
-      </FormCtxProvider>
-    </div>
+    <FormCtxProvider>
+      <Form />
+    </FormCtxProvider>
   )
 }

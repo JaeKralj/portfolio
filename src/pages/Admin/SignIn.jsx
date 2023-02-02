@@ -33,7 +33,7 @@ export default function SignIn() {
     }
   }
   return (
-    <>
+    <section id='sign-in' className='flex-1 grid place-items-center'>
       {loading ? (
         <FormLoader />
       ) : (
@@ -44,6 +44,6 @@ export default function SignIn() {
           btnText='Sign In'
         />
       )}
-    </>
+    </section>
   )
 }

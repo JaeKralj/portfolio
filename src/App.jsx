@@ -1,6 +1,5 @@
-import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
-import PrivateRoute from './components/Auth/PrivateRoute'
 import Footer from './components/UI/Footer'
 import Navbar from './components/UI/Navbar'
 import Admin from './pages/Admin/Admin'
@@ -8,8 +7,11 @@ import SignIn from './pages/Admin/SignIn'
 import SignUp from './pages/Admin/SignUp'
 import Contact from './pages/Contact'
 import Home from './pages/Home'
+import NotFound from './pages/NotFound'
+import PrivateRoute from './pages/PrivateRoute'
 import Project from './pages/Project'
 import Projects from './pages/Projects'
+import PublicRoute from './pages/PublicRoute'
 
 function App() {
   return (
@@ -17,6 +19,7 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
+          <Route path='*' element={<NotFound />} />
           <Route path='/' element={<Home />} />
           <Route path='projects' element={<Projects />} />
           <Route path='contact' element={<Contact />} />
@@ -29,8 +32,22 @@ function App() {
             }
           />
 
-          <Route path='admin/signup' element={<SignUp />} />
-          <Route path='admin/signin' element={<SignIn />} />
+          <Route
+            path='admin/signup'
+            element={
+              <PublicRoute>
+                <SignUp />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path='admin/signin'
+            element={
+              <PublicRoute>
+                <SignIn />
+              </PublicRoute>
+            }
+          />
           <Route path='/projects/:projectId' element={<Project />} />
         </Routes>
         <Footer />
